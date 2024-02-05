@@ -16,7 +16,7 @@ class OnBoardingScreen extends StatelessWidget  {
         title: 'Welcome to Mafhom!',
         body: '''Experience the power of communication without barriers. Easily translate gestures into text and vice versa. Start communicating inclusively today!''',
         customPainter: VectorOnBoarding1(),
-        value: 1.0869565217391304,
+        value: 0.9166666666666666,
     ),
     BoardingModel(
         image: 'assets/images/onboarding/2.png',
@@ -30,12 +30,12 @@ class OnBoardingScreen extends StatelessWidget  {
         title: 'Unlock the world of Egyptian Sign Language.',
         body: 'Our app empowers you to bridge language gaps, Understand and be understood. Begin your journey to understanding Egyptian Sign Language with us.',
         customPainter: VectorOnBoarding3(),
-        value: 0.9166666666666666,
+        value: 1.0869565217391304,
     ),
 
   ];
 
-   // Gives the height
+
   var width = 300.0;
   //late var height = width * 1.0638297872340425;
 
@@ -189,8 +189,30 @@ class OnBoardingScreen extends StatelessWidget  {
         ),
         ///GET STARTED BUTTON
         AppCubit.get(context).isLast
-            ?defaultButton(text: 'Get Started', width: MediaQuery.of(context).size.width*.60,onPressed: () {  })
-            :const SizedBox(height: 40,),
+            ?defaultButton(
+
+            text: 'Get Started',
+            backGround: primaryColor,
+            width: MediaQuery.of(context).size.width*.60,
+            onPressed: () {  },
+        )
+            :Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                defaultButton(
+                    text: 'skip',
+                    textColor: Colors.black,
+                    backGround: Colors.white,
+                    width: MediaQuery.of(context).size.width*.3,
+
+                    onPressed: () {  }),
+                defaultButton(
+                    text: 'next',
+                    backGround: primaryColor,
+                    width: MediaQuery.of(context).size.width*.3,
+                    onPressed: () {  }),
+              ],
+            )
 
       ],
     ),
@@ -201,55 +223,3 @@ class OnBoardingScreen extends StatelessWidget  {
 
 
 
-class CurveCustomPainter extends CustomPainter{
-  var points=[];
-  CurveCustomPainter(this.points);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    var paint = Paint()..color =
-        Colors.blueAccent..style;
-
-
-
-    // for(var i =0; i < points.length-1; i++){
-    //   var currentPoint = points[i];
-    //   var nextPoint = points[i+1];
-    //   canvas.drawLine(currentPoint, nextPoint, paint);
-    // }
-
-    // for (var p in points){
-    //   canvas.drawCircle(p, 15, paint..color =Colors.black);
-    // }
-    var path = Path();
-
-    path.moveTo(points[0].dx, points[0].dy);
-
-    for(var i = 0;i<points.length-2;i++){
-      var xc = (points[i].dx + points[i+1].dx) / 2;
-      var yc = (points[i].dy + points[i+1].dy) / 2;
-
-      path.quadraticBezierTo(points[i].dx, points[i].dy, xc, yc,);
-
-    }
-    path.quadraticBezierTo(
-      points[points.length-2].dx,
-      points[points.length-2].dy,
-      points[points.length-1].dx,
-      points[points.length-1].dy,
-    );
-
-    canvas.drawPath(path, paint..color = const Color(0xff0046a5));
-
-
-    //canvas.drawCircle(Offset(100, 300), 15, paint..color = Colors.black);
-    //canvas.drawCircle(Offset(400, 300), 15, paint..color = Colors.black);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
-  }
-
-
-}

@@ -21,7 +21,7 @@ Decoration backgroundDecoration = const BoxDecoration(
 
 
 //Copy this CustomPainter code to the Bottom of the File
-class VectorOnBoarding1 extends CustomPainter {
+class VectorOnBoarding3 extends CustomPainter {
 @override
 void paint(Canvas canvas, Size size) {
 
@@ -98,7 +98,7 @@ return true;
 
 
 //Copy this CustomPainter code to the Bottom of the File
-class VectorOnBoarding3 extends CustomPainter {
+class VectorOnBoarding1 extends CustomPainter {
 @override
 void paint(Canvas canvas, Size size) {
 

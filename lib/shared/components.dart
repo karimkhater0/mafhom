@@ -5,7 +5,8 @@ import 'constants.dart';
 
 Widget defaultButton({
   double width = double.infinity,
-  //Color backGround = ,
+  required Color backGround,
+  Color textColor = Colors.white,
   double radius = 15,
   required String text,
   required void Function()? onPressed,
@@ -13,14 +14,14 @@ Widget defaultButton({
     Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius),
-        color: primaryColor,
+        color: backGround,
       ),
       width: width,
       child: RawMaterialButton(
         onPressed: onPressed,
         child: Text(text,
-            style: const TextStyle(
-              color: Colors.white,
+            style:  TextStyle(
+              color: textColor,
               fontSize: 20,
               fontWeight: FontWeight.bold
             )),
