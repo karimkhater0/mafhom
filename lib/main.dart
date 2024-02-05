@@ -1,8 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:mafhom/curves.dart';
-import 'package:mafhom/modules/splash/splash_screen.dart';
-import 'package:mafhom/screen.dart';
 import 'package:mafhom/shared/bloc_observer.dart';
 
 import 'modules/onboarding/onboarding_screen.dart';
@@ -22,10 +19,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xff4d689d)),
         useMaterial3: true,
       ),
-      home:  TestCurves(),
+      home:  OnBoardingScreen(),
     );
   }
 }

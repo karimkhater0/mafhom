@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'constants.dart';
+
 
 Widget defaultButton({
   double width = double.infinity,
-  Color backGround = Colors.indigoAccent,
+  //Color backGround = ,
   double radius = 15,
   required String text,
   required void Function()? onPressed,
@@ -11,7 +13,7 @@ Widget defaultButton({
     Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius),
-        color: backGround,
+        color: primaryColor,
       ),
       width: width,
       child: RawMaterialButton(

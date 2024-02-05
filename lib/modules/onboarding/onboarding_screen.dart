@@ -9,40 +9,36 @@ import '../../shared/constants.dart';
 import '../../shared/cubit/states.dart';
 
 
-
 class OnBoardingScreen extends StatelessWidget  {
   List<BoardingModel> boarding=[
     BoardingModel(
-      image: 'assets/images/onboarding/1.png',
-      title: 'Say Hi To Everyone',
+        image: 'assets/images/onboarding/1.png',
+        title: 'Welcome to Mafhom!',
+        body: '''Experience the power of communication without barriers. Easily translate gestures into text and vice versa. Start communicating inclusively today!''',
+        customPainter: VectorOnBoarding1(),
+        value: 1.0869565217391304,
     ),
     BoardingModel(
-      image: 'assets/images/onboarding/2.png',
-      title: 'Talk With Love',
+        image: 'assets/images/onboarding/2.png',
+        title: 'Learn,Translate and Connect.',
+        body: ''' With Mafhom, learn new sign, translate effortless, and connect with the the deaf and dumb around you.''',
+        customPainter: VectorOnBoarding2(),
+        value: 1.011070110701107,
     ),
     BoardingModel(
-      image: 'assets/images/onboarding/3.png',
-      title: 'Understand Everyone',
+        image: 'assets/images/onboarding/3.png',
+        title: 'Unlock the world of Egyptian Sign Language.',
+        body: 'Our app empowers you to bridge language gaps, Understand and be understood. Begin your journey to understanding Egyptian Sign Language with us.',
+        customPainter: VectorOnBoarding3(),
+        value: 0.9166666666666666,
     ),
 
   ];
-  double scale = 400/500;
-  late var points = [
-    //const Offset(100, 300),
-    Offset(10*scale, 280*scale),
 
-    Offset(15*scale, 250*scale),
-    Offset(30*scale, 230*scale),
-    Offset(200*scale, 10*scale),
-    Offset(460*scale, 150*scale),
-    Offset(400*scale, 475*scale),
-    //const Offset(275, 500),
-    Offset(170*scale, 470*scale),
-    Offset(10*scale, 330*scale),
+   // Gives the height
+  var width = 300.0;
+  //late var height = width * 1.0638297872340425;
 
-    Offset(10*scale, 280*scale),
-
-  ];
 
   var boardController = PageController();
 
@@ -50,6 +46,8 @@ class OnBoardingScreen extends StatelessWidget  {
   @override
   Widget build(BuildContext context) {
     //var cubit = AppCubit.get(context);
+    double screenWidth = MediaQuery.of(context).size.width;    // Gives the width
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return BlocProvider(
       create: (BuildContext context) =>AppCubit(),
@@ -83,6 +81,7 @@ class OnBoardingScreen extends StatelessWidget  {
     );
   }
 
+
   ///IMAGE, INDICATOR, TITLE
   Widget buildBoardingItem(BoardingModel model,context) => Padding(
     padding: const EdgeInsets.fromLTRB(40, 100, 40, 40),
@@ -94,24 +93,17 @@ class OnBoardingScreen extends StatelessWidget  {
         Expanded(
           flex: 3,
           child: Stack(
-           children: [
-             Container(
-               width: 500,
-               height: 500,
-               child: CustomPaint(
-                 painter: CurveCustomPainter(points),
-               ),
-             ),
-             Column(
-               children: [
-                 const SizedBox(height: 20,),
-                 Image(
-                   image: AssetImage(model.image),
-                   height: 300,
-                   fit: BoxFit.fitHeight,
 
-                 ),
-               ],
+           children: [
+             CustomPaint(
+               size: Size(width, width*model.value), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+               painter: model.customPainter,
+             ),
+             Image(
+               image: AssetImage(model.image),
+               height: width*model.value,
+               fit: BoxFit.fitHeight,
+
              ),
 
            ],
@@ -127,13 +119,13 @@ class OnBoardingScreen extends StatelessWidget  {
             children: [
               SmoothPageIndicator(
                 controller: boardController,
-                effect:  const ExpandingDotsEffect(
+                effect:  ExpandingDotsEffect(
                   dotColor: Colors.grey,
-                  //activeDotColor: defaultColor,
-                  dotHeight: 10,
-                  expansionFactor: 4,
-                  dotWidth: 10,
-                  spacing: 5,
+                  activeDotColor: primaryColor,
+                  dotHeight: 15,
+                  expansionFactor: 2.5,
+                  dotWidth: 20,
+                  spacing: 15,
                 ),
                 count: 3,
               ),
@@ -166,22 +158,38 @@ class OnBoardingScreen extends StatelessWidget  {
         ),
         ///TITLE
         Expanded(
-          flex: 2,
+          flex: 1,
           child: Text(
             model.title,
-            maxLines: 2,
+
+            maxLines: 3,
             style: const TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 34,
+                fontSize: 29,
                 overflow: TextOverflow.ellipsis
 
 
             ),
           ),
         ),
+        ///BODY
+        Expanded(
+          flex: 2,
+            child: Text(
+              model.body,
+              maxLines: 6,
+              style: TextStyle(
+                  fontSize: 20,
+                  overflow: TextOverflow.ellipsis,
+              ),
+
+
+            ),
+
+        ),
         ///GET STARTED BUTTON
         AppCubit.get(context).isLast
-            ?defaultButton(text: 'Get Started', onPressed: () {  })
+            ?defaultButton(text: 'Get Started', width: MediaQuery.of(context).size.width*.60,onPressed: () {  })
             :const SizedBox(height: 40,),
 
       ],
