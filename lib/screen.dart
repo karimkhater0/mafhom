@@ -15,18 +15,13 @@ class TestCurves extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
 
-        child: Center(child: Icon(
 
-          Icons.sign_language,
-        size: 300,
-          color: Colors.white,
-        )),
-        // child: Center(
-        //   child: CustomPaint(
-        //     size: Size(width , height), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-        //     painter: RPSCustomPainter(),
-        //   ),
-        // ),
+        child: Center(
+          child: CustomPaint(
+            size: Size(width , height), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+            painter: RPSCustomPainter(),
+          ),
+        ),
       ),
     );
   }
