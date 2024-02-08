@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 Color primaryColor = Color(0xff4d689d);
+double screenWidth(context) => MediaQuery.of(context).size.width;    // Gives the width
+double screenHeight(context) => MediaQuery.of(context).size.height;
 
 Decoration backgroundDecoration = const BoxDecoration(
     gradient: LinearGradient(

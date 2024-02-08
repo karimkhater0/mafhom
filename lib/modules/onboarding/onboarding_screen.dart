@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mafhom/layout/home_layout.dart';
 import 'package:mafhom/shared/cubit/cubit.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -46,8 +47,7 @@ class OnBoardingScreen extends StatelessWidget  {
   @override
   Widget build(BuildContext context) {
     //var cubit = AppCubit.get(context);
-    double screenWidth = MediaQuery.of(context).size.width;    // Gives the width
-    double screenHeight = MediaQuery.of(context).size.height;
+
 
     return BlocProvider(
       create: (BuildContext context) =>AppCubit(),
@@ -194,7 +194,12 @@ class OnBoardingScreen extends StatelessWidget  {
             text: 'Get Started',
             backGround: primaryColor,
             width: MediaQuery.of(context).size.width*.60,
-            onPressed: () {  },
+            onPressed: () { 
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeLayout(),),
+                      (route) => false);
+            },
         )
             :Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
