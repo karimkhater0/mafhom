@@ -31,14 +31,14 @@ class HomeLayout extends StatelessWidget {
 
                   height: 50,
                   color: primaryColor,
-                  animationDuration: const Duration(milliseconds: 300),
+                  animationDuration: const Duration(milliseconds: 200),
                   index: cubit.currentIndex,
                   onTap: (index) {
                     cubit.changeBottomNavBar(index);
                   },
                   items: const [
                     Icon(
-                      Icons.camera_alt_outlined,
+                      Icons.text_fields,
                       color: Colors.white,
                     ),
                     Icon(

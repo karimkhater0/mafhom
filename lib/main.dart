@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:mafhom/shared/bloc_observer.dart';
+import 'package:mafhom/shared/constants.dart';
 
 import 'modules/onboarding/onboarding_screen.dart';
 

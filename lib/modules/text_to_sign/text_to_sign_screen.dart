@@ -41,6 +41,12 @@ class TTSScreen extends StatelessWidget {
                       children: [
                         TextField(
                           textDirection: TextDirection.rtl,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            labelText: 'Write your text here...',
+
+
+                          ),
 
                         ),
                         Spacer(),
