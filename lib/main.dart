@@ -5,6 +5,7 @@ import 'package:mafhom/shared/constants.dart';
 
 import 'modules/login/login_screen.dart';
 import 'modules/onboarding/onboarding_screen.dart';
+import 'modules/text_to_sign/text_to_sign_screen.dart';
 
 void main() {
   Bloc.observer = MyBlocObserver();
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xff4d689d)),
         useMaterial3: true,
       ),
-      home:  LoginScreen(),
+      home:  TTSScreen(),
     );
   }
 }
