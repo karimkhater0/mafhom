@@ -8,3 +8,5 @@ class AppChangeOnBoardingState extends AppStates {}
 
 class AppChangeBottomNavBarState extends AppStates {}
 
+class ShopChangePasswordVisibilityState extends AppStates {}
+

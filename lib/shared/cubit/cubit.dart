@@ -13,6 +13,8 @@ class AppCubit extends Cubit<AppStates>{
   static AppCubit get(context) => BlocProvider.of(context);
 
   bool isLast = false;
+  bool isPassword = false;
+  bool isPasswordHidden = true;
   int currentIndex = 0;
   List<Widget> screens = [
     const TTSScreen(),
@@ -36,6 +38,16 @@ class AppCubit extends Cubit<AppStates>{
   {
     currentIndex=index;
     emit(AppChangeBottomNavBarState());
+  }
+
+  IconData suffix = Icons.visibility_outlined;
+  void changePasswordVisibility()
+  {
+    isPasswordHidden = !isPasswordHidden;
+
+    suffix = isPasswordHidden? Icons.visibility_outlined:Icons.visibility_off_outlined ;
+    emit(ShopChangePasswordVisibilityState());
+
   }
 
 }

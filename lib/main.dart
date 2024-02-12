@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mafhom/shared/bloc_observer.dart';
 import 'package:mafhom/shared/constants.dart';
 
+import 'modules/login/login_screen.dart';
 import 'modules/onboarding/onboarding_screen.dart';
 
 void main() {
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xff4d689d)),
         useMaterial3: true,
       ),
-      home:  OnBoardingScreen(),
+      home:  LoginScreen(),
     );
   }
 }

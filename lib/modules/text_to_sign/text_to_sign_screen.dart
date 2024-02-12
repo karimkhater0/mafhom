@@ -53,7 +53,7 @@ class TTSScreen extends StatelessWidget {
                         Row(
                           children: [
                             Spacer(),
-                            IconButton(onPressed: (){}, icon: Icon(Icons.star)),
+                            IconButton(onPressed: (){}, icon: Icon(Icons.bookmark)),
                             IconButton(onPressed: (){}, icon: Icon(Icons.mic)),
                             IconButton(onPressed: (){}, icon: Icon(Icons.camera_alt_outlined)),
                           ],

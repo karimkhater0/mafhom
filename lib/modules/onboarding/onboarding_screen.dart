@@ -179,7 +179,7 @@ class OnBoardingScreen extends StatelessWidget {
             ),
           ),
 
-          ///GET STARTED BUTTON
+          ///BUTTONS
           AppCubit.get(context).isLast
               ? defaultButton(
             text: 'Get Started',

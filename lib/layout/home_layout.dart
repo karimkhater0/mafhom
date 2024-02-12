@@ -46,7 +46,7 @@ class HomeLayout extends StatelessWidget {
                       color: Colors.white,
                     ),
                     Icon(
-                      Icons.star,
+                      Icons.bookmark,
                       color: Colors.white,
                     ),
                     Icon(
