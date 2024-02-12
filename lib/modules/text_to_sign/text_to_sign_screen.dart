@@ -10,59 +10,63 @@ class TTSScreen extends StatelessWidget {
       
       body: SafeArea(
         child: Container(
+          height: screenHeight(context),
           decoration: backgroundDecoration,
           child: Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  height: screenHeight(context)*.5,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: primaryColor,
-                    borderRadius: BorderRadius.circular(15),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    height: screenHeight(context)*.5,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.circular(15),
 
-                  ),
-                ),
-
-                Container(
-                  height: screenHeight(context)*.15,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-
-
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        TextField(
-                          textDirection: TextDirection.rtl,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            labelText: 'Write your text here...',
-
-
-                          ),
-
-                        ),
-                        Spacer(),
-                        Row(
-                          children: [
-                            Spacer(),
-                            IconButton(onPressed: (){}, icon: Icon(Icons.bookmark)),
-                            IconButton(onPressed: (){}, icon: Icon(Icons.mic)),
-                            IconButton(onPressed: (){}, icon: Icon(Icons.camera_alt_outlined)),
-                          ],
-                        ),
-                      ],
                     ),
                   ),
-                ),
-              ],
+
+                  SizedBox(height: screenHeight(context)*.0875,),
+                  Container(
+                    height: screenHeight(context)*.15,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+
+
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          TextField(
+                            textDirection: TextDirection.rtl,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Write your text here...',
+
+
+                            ),
+
+                          ),
+                          Spacer(),
+                          Row(
+                            children: [
+                              Spacer(),
+                              IconButton(onPressed: (){}, icon: Icon(Icons.bookmark)),
+                              IconButton(onPressed: (){}, icon: Icon(Icons.mic)),
+                              IconButton(onPressed: (){}, icon: Icon(Icons.camera_alt_outlined)),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                ],
+              ),
             ),
           ),
         ),
