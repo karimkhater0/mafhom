@@ -29,17 +29,16 @@ class TTSScreen extends StatelessWidget {
 
                   SizedBox(height: screenHeight(context)*.0875,),
                   Container(
-                    height: screenHeight(context)*.15,
+                    height: screenHeight(context)*.15<100?100:screenHeight(context)*.15,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15),
-
-
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           TextField(
                             textDirection: TextDirection.rtl,
@@ -51,10 +50,11 @@ class TTSScreen extends StatelessWidget {
                             ),
 
                           ),
-                          Spacer(),
+
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Spacer(),
+
                               IconButton(onPressed: (){}, icon: Icon(Icons.bookmark)),
                               IconButton(onPressed: (){}, icon: Icon(Icons.mic)),
                               IconButton(onPressed: (){}, icon: Icon(Icons.camera_alt_outlined)),

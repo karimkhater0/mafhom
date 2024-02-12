@@ -63,14 +63,14 @@ flutter_icons:
 flutter_native_splash:
   android: true
   ios: true
-  color: "#2b2b2b"
+  color: "#bbcded"
   image: assets/images/logo/splash_logo.png
   android_gravity: bottom
   fullscreen: true
   branding: assets/images/logo/branding.png
 
   android_12:
-    color: "#2b2b2b"
+    color: "#bbcded"
     image: assets/images/logo/splash_logo.png
     #android_gravity: fill_horizontal
     branding: assets/images/logo/branding.png
