@@ -1,7 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:mafhom/modules/register/register_screen.dart';
+import 'package:mafhom/modules/splash/splash_screen.dart';
 import 'package:mafhom/shared/bloc_observer.dart';
 import 'package:mafhom/shared/constants.dart';
+import 'package:mafhom/shared/dio_helper.dart';
 
 import 'layout/home_layout.dart';
 import 'modules/login/login_screen.dart';
@@ -10,6 +13,7 @@ import 'modules/text_to_sign/text_to_sign_screen.dart';
 
 void main() {
   Bloc.observer = MyBlocObserver();
+  DioHelper.init();
   runApp(const MyApp());
 }
 
@@ -26,8 +30,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xff4d689d)),
         useMaterial3: true,
       ),
-      home:  HomeLayout(),
+      home: RegisterScreen(),
     );
   }
 }
-

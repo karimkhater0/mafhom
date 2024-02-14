@@ -26,35 +26,6 @@ Widget defaultButton({
       ),
     );
 
-Widget defaultFormText({
-  required TextEditingController controller,
-  required TextInputType textType,
-  required String labelText,
-  required String? Function(String?)? validate,
-  Function(String)? onSubmit,
-  IconData? prefix = null,
-  Function()? onTap,
-  bool isPassword = false,
-}) =>
-    TextFormField(
-      controller: controller,
-      keyboardType: textType,
-      onTap: onTap,
-      onFieldSubmitted: onSubmit,
-      validator: validate,
-      obscureText: isPassword,
-      decoration: InputDecoration(
-        labelText: labelText,
-        labelStyle: TextStyle(
-          color: primaryColor,
-        ),
-        border:  OutlineInputBorder(),
-        prefixIcon: Icon(
-          prefix,
-        ),
-      ),
-    );
-
 Widget formField({
   BuildContext? context,
   required TextEditingController controller,
@@ -69,11 +40,11 @@ Widget formField({
   Color? backgroundColor = Colors.white,
 }) =>
     Container(
-      height: 45,
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(10),
-      ),
+      // height: 70,
+      // decoration: BoxDecoration(
+      //   color: backgroundColor,
+      //   borderRadius: BorderRadius.circular(10),
+      // ),
       child: TextFormField(
         controller: controller,
         keyboardType: textType,
@@ -83,36 +54,37 @@ Widget formField({
         validator: validate,
         obscureText: isPasswordHidden,
         decoration: InputDecoration(
-          border:  InputBorder.none,
+          contentPadding: EdgeInsets.symmetric(horizontal: 10),
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none,
+          ),
           hintText: labelText,
           hintStyle: TextStyle(
             color: primaryColor,
             fontWeight: FontWeight.w400,
             fontSize: 18,
-
-
           ),
-          suffixIcon: isPassword?IconButton(
-            onPressed: () {
-              AppCubit.get(context).changePasswordVisibility();
-            },
-            icon: Icon(
-              AppCubit.get(context).suffix,
-            ),
-          ):null,
+          suffixIcon: isPassword
+              ? IconButton(
+                  onPressed: () {
+                    AppCubit.get(context).changePasswordVisibility();
+                  },
+                  icon: Icon(
+                    AppCubit.get(context).suffix,
+                  ),
+                )
+              : null,
         ),
-
-
       ),
     );
 
-
-void showToast(
-    {
-      required String msg,
-      required ToastStates state,
-    })
-{
+void showToast({
+  required String msg,
+  required ToastStates state,
+}) {
   Fluttertoast.showToast(
     msg: msg,
     toastLength: Toast.LENGTH_LONG,
@@ -122,39 +94,32 @@ void showToast(
     textColor: Colors.white,
     fontSize: 16.0,
   );
-
-
 }
 
-enum ToastStates{SUCCESS, ERROR, WARNING}
+enum ToastStates { SUCCESS, ERROR, WARNING }
 
-Color changeToastColor(ToastStates state)
-{
+Color changeToastColor(ToastStates state) {
   Color color;
-  switch(state)
-  {
+  switch (state) {
     case ToastStates.SUCCESS:
-      color=Colors.green;
+      color = Colors.green;
       break;
 
     case ToastStates.ERROR:
-      color=Colors.red;
+      color = Colors.red;
       break;
 
     case ToastStates.WARNING:
-      color=Colors.amber;
+      color = Colors.amber;
       break;
-
   }
   return color;
-
 }
 
 navigateTo(context, widget) => Navigator.push(
-  context,
-  MaterialPageRoute(builder: (context) => widget),
-);
-
+      context,
+      MaterialPageRoute(builder: (context) => widget),
+    );
 
 navigateAndFinish(context, widget) {
   Navigator.pushAndRemoveUntil(

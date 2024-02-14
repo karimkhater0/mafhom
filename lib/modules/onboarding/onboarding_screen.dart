@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mafhom/layout/home_layout.dart';
+import 'package:mafhom/modules/login/login_screen.dart';
 import 'package:mafhom/shared/cubit/cubit.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -38,8 +38,6 @@ class OnBoardingScreen extends StatelessWidget {
     ),
   ];
 
-
-
   var boardController = PageController();
 
   @override
@@ -68,6 +66,44 @@ class OnBoardingScreen extends StatelessWidget {
                       itemCount: boarding.length,
                     ),
                   ),
+
+                  ///BUTTONS
+                  AppCubit.get(context).isLast
+                      ? defaultButton(
+                          text: 'Get Started',
+                          backGround: primaryColor,
+                          width: MediaQuery.of(context).size.width * .60,
+                          onPressed: () {
+                            navigateAndFinish(context, LoginScreen());
+                          },
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            defaultButton(
+                                text: 'skip',
+                                textColor: Colors.black,
+                                backGround: Colors.white,
+                                width: MediaQuery.of(context).size.width * .3,
+                                onPressed: () {
+                                  navigateAndFinish(context, LoginScreen());
+                                }),
+                            defaultButton(
+                                text: 'next',
+                                backGround: primaryColor,
+                                width: MediaQuery.of(context).size.width * .3,
+                                onPressed: () {
+                                  print(screenWidth(context));
+                                  boardController.nextPage(
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.fastEaseInToSlowEaseOut,
+                                  );
+                                }),
+                          ],
+                        ),
+                  SizedBox(
+                    height: 70,
+                  )
                 ],
               ),
             ),
@@ -78,9 +114,9 @@ class OnBoardingScreen extends StatelessWidget {
   }
 
   ///IMAGE, INDICATOR, TITLE
-  Widget buildBoardingItem(BoardingModel model, context)
-  {
-    double width = screenWidth(context)<=500.0?screenWidth(context)-80:400.0;
+  Widget buildBoardingItem(BoardingModel model, context) {
+    double width =
+        screenWidth(context) <= 500.0 ? screenWidth(context) - 80 : 400.0;
     return Padding(
       padding: EdgeInsets.fromLTRB(30, 60, 30, 60),
       child: Column(
@@ -93,7 +129,7 @@ class OnBoardingScreen extends StatelessWidget {
               alignment: Alignment.center,
               children: [
                 CustomPaint(
-                  size: Size(width , width * model.value),
+                  size: Size(width, width * model.value),
                   painter: model.customPainter,
                 ),
                 Image(
@@ -158,7 +194,6 @@ class OnBoardingScreen extends StatelessWidget {
               model.title,
               maxLines: 3,
               textAlign: TextAlign.center,
-
               style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 29,
@@ -177,41 +212,6 @@ class OnBoardingScreen extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-          ),
-
-          ///BUTTONS
-          AppCubit.get(context).isLast
-              ? defaultButton(
-            text: 'Get Started',
-            backGround: primaryColor,
-            width: MediaQuery.of(context).size.width * .60,
-            onPressed: () {
-              navigateAndFinish(context, HomeLayout());
-            },
-          )
-              : Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              defaultButton(
-                  text: 'skip',
-                  textColor: Colors.black,
-                  backGround: Colors.white,
-                  width: MediaQuery.of(context).size.width * .3,
-                  onPressed: () {
-                    navigateAndFinish(context, HomeLayout());
-                  }),
-              defaultButton(
-                  text: 'next',
-                  backGround: primaryColor,
-                  width: MediaQuery.of(context).size.width * .3,
-                  onPressed: () {
-                    print(screenWidth(context));
-                    boardController.nextPage(
-                      duration: const Duration(microseconds: 750,),
-                      curve: Curves.fastEaseInToSlowEaseOut,
-                    );
-                  }),
-            ],
           ),
         ],
       ),
