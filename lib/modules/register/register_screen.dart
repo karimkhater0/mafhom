@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mafhom/modules/login/login_screen.dart';
+import 'package:mafhom/modules/text_to_sign/text_to_sign_screen.dart';
 import 'package:mafhom/shared/components.dart';
 import 'package:mafhom/shared/constants.dart';
 import 'package:mafhom/shared/cubit/cubit.dart';
@@ -82,36 +83,25 @@ class RegisterScreen extends StatelessWidget {
                         const SizedBox(
                           height: 30,
                         ),
-                        defaultButton(
-                            backGround: primaryColor,
-                            text: 'Register',
-                            onPressed: () {
-                              if (formKey.currentState!.validate()) {
-                                AppCubit.get(context).userRegister(
-                                  username: registerUsernameController.text,
-                                  email: registerEmailController.text,
-                                  password: registeredPasswordController.text,
-                                );
-                              }
-                            },
-                            width: screenWidth(context) * 0.6),
-                        // (state is! ShopRegisterLoadingState)
-                        //     ? defaultButton(
-                        //         backGround: primaryColor,
-                        //         text: 'Register',
-                        //         onPressed: () {
-                        //           if (formKey.currentState!.validate()) {
-                        //             AppCubit.get(context).userRegister(
-                        //               username: registerUsernameController.text,
-                        //               email: registerEmailController.text,
-                        //               password: registeredPasswordController.text,
-                        //             );
-                        //           }
-                        //         },
-                        //         width: screenWidth(context) * 0.6)
-                        //     : Center(
-                        //         child: CircularProgressIndicator(),
-                        //       ),
+                        (state is! ShopRegisterLoadingState)
+                            ? defaultButton(
+                                backGround: primaryColor,
+                                text: 'Register',
+                                onPressed: () {
+                                  if (formKey.currentState!.validate()) {
+                                    AppCubit.get(context).userRegister(
+                                      username: registerUsernameController.text,
+                                      email: registerEmailController.text,
+                                      password:
+                                          registeredPasswordController.text,
+                                    );
+                                    navigateAndFinish(context, TTSScreen());
+                                  }
+                                },
+                                width: screenWidth(context) * 0.6)
+                            : Center(
+                                child: CircularProgressIndicator(),
+                              ),
                         SizedBox(
                           height: 20,
                         ),

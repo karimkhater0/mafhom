@@ -2,6 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mafhom/modules/account/account_screen.dart';
+import 'package:mafhom/modules/login/change_password_screen.dart';
+import 'package:mafhom/modules/login/forget_password_screen.dart';
 import 'package:mafhom/modules/login/login_screen.dart';
 import 'package:mafhom/modules/register/register_screen.dart';
 import 'package:mafhom/modules/saved/saved_screen.dart';
@@ -27,6 +29,8 @@ class AppCubit extends Cubit<AppStates> {
     const AccountScreen(),
     LoginScreen(),
     RegisterScreen(),
+    ForgetPwScreen(),
+    ChangePwScreen(),
   ];
 
   void changeOnBoardingPage(int index) {
@@ -82,7 +86,7 @@ class AppCubit extends Cubit<AppStates> {
     DioHelper.postData(
       url: REGISTER,
       data: {
-        "username": username,
+        "userName": username,
         "email": email,
         "password": password,
         "passwordConfirm": password,
@@ -94,6 +98,23 @@ class AppCubit extends Cubit<AppStates> {
     }).catchError((error) {
       print(error.toString());
       emit(ShopRegisterErrorState(error.toString()));
+    });
+  }
+
+  void userForgetPw({
+    required String email,
+  }) {
+    emit(ShopForgetPwInitialState());
+    DioHelper.postData(
+      url: FORGETPW,
+      data: {
+        "email": email,
+      },
+    ).then((value) {
+      print(value.data);
+      emit(ShopForgetPwSuccessState());
+    }).catchError((error) {
+      emit(ShopForgetPwErrorState(error.toString()));
     });
   }
 }

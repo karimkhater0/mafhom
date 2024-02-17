@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mafhom/layout/home_layout.dart';
+import 'package:mafhom/modules/login/forget_password_screen.dart';
 import 'package:mafhom/modules/register/register_screen.dart';
+import 'package:mafhom/modules/text_to_sign/text_to_sign_screen.dart';
 import 'package:mafhom/shared/components.dart';
 import 'package:mafhom/shared/constants.dart';
 
@@ -80,6 +83,7 @@ class LoginScreen extends StatelessWidget {
                                       email: emailController.text,
                                       password: passwordController.text,
                                     );
+                                    navigateAndFinish(context, HomeLayout());
                                   }
                                 },
                                 width: screenWidth(context) * 0.6)
@@ -90,7 +94,14 @@ class LoginScreen extends StatelessWidget {
                           height: 20,
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return ForgetPwScreen();
+                              }),
+                            );
+                          },
                           child: Text(
                             'Forgot Password?',
                             style: TextStyle(
